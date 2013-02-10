@@ -138,7 +138,7 @@ def main():
     if len(sys.argv) > 1:
         userinput = sys.argv[1]
     else:
-        userinput = raw_input("Logischer Ausdruck: ")
+        userinput = raw_input("Logic term: ")
     print logiceval(parse(scan(userinput)))
 
 main()
