@@ -41,6 +41,12 @@ def parseOperator(tokens):
         return ["and",tokens]
     elif token == "or":
         return ["or",tokens]
+    elif token == "->":
+        return ["->",tokens]
+    elif token == "<->":
+        return ["<->",tokens]
+    elif token == "xor":
+        return ["xor",tokens]
     else:
         return ["error",tokens]
 
@@ -102,6 +108,26 @@ def logiceval(expr):
             return logiceval(getToken(tokens)) and logiceval(getToken(getToken(tokens)))
         elif token == "or":
             return logiceval(getToken(tokens)) or logiceval(getToken(getToken(tokens)))
+        elif token == "->":
+            left = logiceval(getToken(tokens))
+            if left:
+                return False
+            else:
+                return True 
+        elif token == "<->":
+            left = logiceval(getToken(tokens))
+            right = logiceval(getToken(getToken(tokens)))
+            if (left and right) or (not left and not right):
+                return True
+            else:
+                return False
+        elif token == "xor":
+            left = logiceval(getToken(tokens))
+            right = logiceval(getToken(getToken(tokens)))
+            if (left and not right) or (not left and right):
+                return True
+            else:
+                return False
         else:
             return "error"
     except:
