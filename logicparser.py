@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 import sys
 
 #Returns the first token and the rest list
