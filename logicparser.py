@@ -11,30 +11,11 @@ def getToken(tokens):
         return ["error_end",[]]
 
 #Scan Tokens
-def scan(inputstr):
-    try:
-        tokens = []
-        token = ""
-        for char in inputstr:
-            if char == "(":
-                tokens.append("(")
-            elif char == ")":
-                tokens.append(")")
-            elif char == "T":
-                tokens.append("T")
-            elif char == "F":
-                tokens.append("F")
-            elif char == " ":
-                if not token == "":
-                    tokens.append(token)
-                    token=""
-                else:
-                    pass
-            else:
-                token+=char
-        return tokens
-    except:
-        return "Scanning error"
+def scan(input):
+    expanded_input = input.replace('(', ' ( ').replace(')', ' ) ')
+    tokens = expanded_input.split()
+    return tokens
+    
 #Parses and, or
 def parseOperator(tokens):
     token, tokens = getToken(tokens)
